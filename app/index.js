@@ -73,7 +73,7 @@ async function getUsage(org, pageNo) {
 async function run(org_Name, csv_path) {
 
     let addTitleRow = true;
-    let pageNo =1;
+    let pageNo = 1;
     let remainingRecs = 0;
 
     try {
@@ -89,21 +89,18 @@ async function run(org_Name, csv_path) {
                     remainingRecs = totalSeats;
                 }
 
-                 // pagination to get next page data
-                 remainingRecs = remainingRecs - seatsData.length;
-                 console.log('Remaining Records ' + remainingRecs);
-                 if (remainingRecs > 0) {
-                     pageNo=pageNo+1;
-                     addTitleRow = false;
-                 }
+                // pagination to get next page data
+                remainingRecs = remainingRecs - seatsData.length;
+                console.log('Remaining Records ' + remainingRecs);
 
-                if(inactive_only === 'true') {
+
+                if (inactive_only === 'true') {
                     // return only the inactive user list
                     seatsData = seatsData.filter(seat => {
                         return !seat.last_activity_at || seat.last_activity_at.trim() === '';
                     });
                 }
-                else{
+                else {
                     // return the inactive users and users not active for last n days
                     seatsData = seatsData.filter(seat => {
                         return (!seat.last_activity_at || seat.last_activity_at.trim() === '') || new Date(seat.last_activity_at) < new Date(new Date().setDate(new Date().getDate() - inactive_days));
@@ -131,6 +128,11 @@ async function run(org_Name, csv_path) {
                     });
                 }
                 */
+                if (remainingRecs > 0) {
+                    pageNo = pageNo + 1;
+                    addTitleRow = false;
+                }
+
             });
         } while (remainingRecs > 0);
     } catch (error) {
