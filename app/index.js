@@ -89,6 +89,14 @@ async function run(org_Name, csv_path) {
                     remainingRecs = totalSeats;
                 }
 
+                 // pagination to get next page data
+                 remainingRecs = remainingRecs - seatsData.length;
+                 console.log('Remaining Records ' + remainingRecs);
+                 if (remainingRecs > 0) {
+                     pageNo=pageNo+1;
+                     addTitleRow = false;
+                 }
+
                 if(inactive_only === 'true') {
                     // return only the inactive user list
                     seatsData = seatsData.filter(seat => {
@@ -107,14 +115,6 @@ async function run(org_Name, csv_path) {
 
                 // append to the existing file (or create and append if needed)
                 require("fs").appendFileSync(csv_path, `${parse(seatsData, opts)}\n`);
-
-                // pagination to get next page data
-                remainingRecs = remainingRecs - seatsData.length;
-                console.log('Remaining Records ' + remainingRecs);
-                if (remainingRecs > 0) {
-                    pageNo=pageNo+1;
-                    addTitleRow = false;
-                }
 
                 /*
                 if(is_delete === 'true'){
