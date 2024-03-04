@@ -1,0 +1,23 @@
+    name: Copilot User Management to Report Inactive Users
+
+    on:
+      workflow_dispatch:
+
+    jobs:
+      first-job:
+        runs-on: ubuntu-latest
+        
+        steps:
+          - name: Copilot User Management
+            uses: ambilykk/copilot-user-mgmt@main
+            with:        
+              GITHUB_TOKEN: ${{secrets.GH_TOK}}
+              org_name: 'octodemo'
+              csv_path: data/Copilot-Usage-Report.csv
+              inactive_only: true
+        
+          - name: Upload Copilot Usage Report for Inactive Users
+            uses: actions/upload-artifact@v3
+            with:
+              name: Copilot Usage Report
+              path: data/Copilot-Usage-Report.csv      
