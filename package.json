@@ -1,0 +1,19 @@
+{
+  "name": "copilot-user-mgmt",
+  "version": "1.0.0",
+  "description": "Regularly optimize cost and seat usage for an organization by removing unused Copilot for Business seat assignments from the Organization.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ambilykk/copilot-user-mgmt.git"
+  },
+  "author": "ambilykk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ambilykk/copilot-user-mgmt/issues"
+  },
+  "homepage": "https://github.com/ambilykk/copilot-user-mgmt#readme"
+}

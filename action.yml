@@ -1,0 +1,30 @@
+name: 'Copilot User Management'
+description: 'Regularly optimize cost and seat usage for an organization by removing unused Copilot for Business seat assignments from the Organization.'
+branding:
+  icon: 'download'
+  color: 'blue'
+inputs:
+  GITHUB_TOKEN:
+    description: 'GitHub token'
+    required: true
+  org_name: 
+    description: 'Organization name'
+    required: true
+  csv_path:
+    description: 'CSV File path'
+    required: true
+  is_delete:
+    description: 'Remove inactive or non-active users from seat assignments within the last "inactiveDays" days'
+    required: true
+    default: 'false'
+  inactive_only:
+    description: 'Remove only the inactive users from seat assignments'
+    required: true
+    default: 'false'
+  inactive_days:
+    description: 'Number of days to consider a user inactive. Default to 25 days.'
+    required: true
+    default: '25'
+runs:
+  using: 'node16'
+  main: 'app/index.js'
