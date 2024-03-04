@@ -12,7 +12,7 @@
                 required: true
                 default: 'data/Copilot-Usage-Report.csv'
               is_delete:
-                description: 'Remove inactive or non-active users from seat assignments within the last "inactive_days" days'
+                description: 'Eliminate Inactive Users and Users inactive for the past n days'
                 required: false
                 default: 'false'
               inactive_only:
@@ -20,7 +20,7 @@
                 required: false
                 default: 'false'
               inactive_days:
-                description: 'Number of days to consider a user inactive. Default to 25 days.'
+                description: 'Number of days to identify an inactive user. Default to 25 days.'
                 required: false
                 default: '25'
 
