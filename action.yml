@@ -14,7 +14,7 @@ inputs:
     description: 'CSV File path'
     required: true
   is_delete:
-    description: 'Remove inactive or non-active users from seat assignments within the last "inactiveDays" days'
+    description: 'Eliminate Inactive Users and Users inactive for the past n days'
     required: true
     default: 'false'
   inactive_only:
@@ -22,7 +22,7 @@ inputs:
     required: true
     default: 'false'
   inactive_days:
-    description: 'Number of days to consider a user inactive. Default to 25 days.'
+    description: 'Number of days to identify an inactive user. Default to 25 days.'
     required: true
     default: '25'
 runs:
