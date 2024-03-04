@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/ambilykk/copilot-user-mgmt/issues"
   },
-  "homepage": "https://github.com/ambilykk/copilot-user-mgmt#readme"
+  "homepage": "https://github.com/ambilykk/copilot-user-mgmt#readme",
+  "dependencies": {
+    "@actions/core": "^1.10.1",
+    "@actions/github": "^6.0.0",
+    "json2csv": "^6.0.0-alpha.2",
+    "make-dir": "^4.0.0",
+    "path": "^0.12.7"
+  }
 }

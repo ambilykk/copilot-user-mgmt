@@ -26,5 +26,5 @@ inputs:
     required: true
     default: '25'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'app/index.js'
