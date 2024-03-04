@@ -3,9 +3,6 @@
     on:
       workflow_dispatch:
           inputs:
-              GH_TOK:
-                description: 'GitHub token'
-                required: true
               org_name: 
                 description: 'Organization name'
                 required: true
@@ -16,15 +13,15 @@
                 default: 'data/Copilot-Usage-Report.csv'
               is_delete:
                 description: 'Remove inactive or non-active users from seat assignments within the last "inactive_days" days'
-                required: true
+                required: false
                 default: 'false'
               inactive_only:
                 description: 'Remove only the inactive users from seat assignments'
-                required: true
+                required: false
                 default: 'false'
               inactive_days:
                 description: 'Number of days to consider a user inactive. Default to 25 days.'
-                required: true
+                required: false
                 default: '25'
 
     jobs:
@@ -35,7 +32,7 @@
           - name: Copilot User Management
             uses: ambilykk/copilot-user-mgmt@main
             with:        
-              GITHUB_TOKEN: ${{inputs.GH_TOK}}
+              GITHUB_TOKEN: ${{ secrets.GH_TOK }}
               org_name: ${{ inputs.org_name }} 
               csv_path: ${{ inputs.csv_path }} 
               is_delete: ${{ inputs.is_delete }}
