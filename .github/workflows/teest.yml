@@ -22,7 +22,7 @@
                 type: boolean
                 default:  false
               inactive_days:
-                description: 'Number of days to identify an inactive user. Default to 25 days.'
+                description: 'Number of days to identify an inactive user.'
                 required: false
                 default: '25'
 

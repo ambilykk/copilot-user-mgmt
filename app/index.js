@@ -96,12 +96,11 @@ async function run(org_Name, csv_path) {
                 // pagination to get next page data
                 remainingRecs = remainingRecs - seatsData.length;
                 console.log('Remaining Records ' + remainingRecs);
-                
+
                 console.log('inActive Only ' + inactive_only);
-                console.log('inActive Days ' + inactive_days);
                 console.log('is_delete ' + is_delete);
 
-                if (inactive_only || inactive_only === 'true') {
+                if (inactive_only.toString() === 'true'){
                     // return only the inactive user list
                     seatsData = seatsData.filter(seat => {
                         return !seat.last_activity_at || seat.last_activity_at.trim() === '';
@@ -127,9 +126,8 @@ async function run(org_Name, csv_path) {
                 const opts = { fields, "header": addTitleRow };
 
                 seatsData.forEach(seat => { seat.status = 'pending_cancellation';});
-                if(is_delete || is_delete === 'true'){
+                if(is_delete.toString() === 'true'){
                     // delete the user from copilot seat assignment
-                    console.log('@@@@@@@@@@@@@@@@@@@@ Deleting User');
                     seatsData.forEach(seat => {
                         if(seat.assignee.login === 'amol1717'){
                             console.log('@@@@@@@@@@@@@@@@@@@@ Skipping User ' + seat.assignee.login);

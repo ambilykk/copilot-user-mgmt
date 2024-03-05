@@ -22,7 +22,7 @@ inputs:
     required: true
     default: false
   inactive_days:
-    description: 'Number of days to identify an inactive user. Default to 25 days.'
+    description: 'Number of days to identify an inactive user.'
     required: true
     default: '25'
 runs:
