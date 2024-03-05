@@ -1,7 +1,7 @@
 # Copilot User Management 
 Regularly optimize cost and seat usage for an organization by removing unused Copilot for Business seat assignments from the Organization.
 
-> If your organization has enabled Copilot access for all members, then the delete API will not work. Enable access for selected members in order to manage seats via the API. In this case, you can use the report to manually remove the seat assignments.
+> **_If your organization has enabled Copilot access for all members, then the delete API will not work. Enable access for selected members in order to manage seats via the API. In this case, you can use the report to manually remove the seat assignments._**
 
 
 > Note: **4-Mar-2024** This Action uses the Copilot for Business API, which is in public Beta and subject to change
@@ -201,9 +201,9 @@ Sample workflow 4: Revise Copilot User Management to **Eliminate** Inactive User
 | GITHUB_TOKEN                 | Yes | PAT Token for access    |
 | org_name                       | Yes | GitHub Organization Name                                      |
 | csv_path                       | Yes | CSV file path for the Copilot Seat report                          |
-| inactive_only                | No  | Report only inactive users. Default is false. If set as true, then only the inactive users who never used Copilot will be listed |
-| inactive_days               | No  | Report users inactive for the past n days. Default is 25. If inactive_only set to false, system reports all inactive users with last active date as blank and who are inactive for n days |
-| is_delete                      | No  | Delete the inactive users. Default is false. If it is false, only the report will be generated. If set as true, along with inactive user report, users will be removed form copilot seat assignment |
+| inactive_only                | No  | Generate a report exclusively for inactive users. The default is set to false. When set to true, only the inactive users who have never used Copilot will be listed. |
+| inactive_days               | No  | Generate a report for users who have been inactive for the past n days, with the default value set to 25 days. If inactive_only is set to false, the system will report all users marked as inactive, including those with a blank last active date and those inactive for n days.|
+| is_delete                      | No  | Remove inactive users. The default setting is false. When set to false, only the report will be generated. If set to true, in addition to the inactive user report, users will be **Removed** from copilot seat assignments. |
 
 ## Exported Fields
 Following fields are included in the Copilot Usage Report
