@@ -120,9 +120,6 @@ async function run(org_Name, csv_path) {
                 if (is_delete.toString() === 'true') {
                     // delete the user from copilot seat assignment
                     var selected_users = seatsData.map(seat => seat.assignee.login.toLowerCase());
-
-                    console.log('Selected Users ' + selected_users);
-                    selected_users =['amol1717'];
                     
                     // delete all selected users from copilot seat assignment
                     octokit.request('DELETE /orgs/{org}/copilot/billing/selected_users', {

@@ -1,7 +1,11 @@
 # Copilot User Management 
 Regularly optimize cost and seat usage for an organization by removing unused Copilot for Business seat assignments from the Organization.
 
+> If your organization has enabled Copilot access for all members, then the delete API will not work. Enable access for selected members in order to manage seats via the API. In this case, you can use the report to manually remove the seat assignments.
+
+
 > Note: **4-Mar-2024** This Action uses the Copilot for Business API, which is in public Beta and subject to change
+
 
 ## PAT Token
 Create a Fine-grained personal access tokens with 
@@ -16,6 +20,62 @@ Pass this token as an input to the action - GITHUB_TOKEN
 ## Action in workflow
 
 Include the copilot-user-mgmt action in your workflow. 
+
+Sample workflow 0: Manual trigger to **Report** and **Eliminate** Users inactive for last n days
+
+```
+    name: Copilot User Management to Report Inactive Users
+
+    on:
+      workflow_dispatch:
+          inputs:
+              org_name: 
+                description: 'Organization name'
+                required: true
+                default: 'octodemo'
+              csv_path:
+                description: 'CSV File path'
+                required: true
+                default: 'data/Copilot-Usage-Report.csv'
+              is_delete:
+                description: 'Eliminate Inactive Users and Users inactive for the past n days'
+                required: false
+                type: boolean
+                default: false
+              inactive_only:
+                description: 'Remove only the inactive users from seat assignments'
+                required: false
+                type: boolean
+                default:  false
+              inactive_days:
+                description: 'Number of days to identify an inactive user.'
+                required: false
+                default: '25'
+
+    jobs:
+      first-job:
+        runs-on: ubuntu-latest
+        
+        steps:
+          - name: Copilot User Management
+            uses: ambilykk/copilot-user-mgmt@main
+            with:        
+              GITHUB_TOKEN: ${{ secrets.GH_TOK }}
+              org_name: ${{ inputs.org_name }} 
+              csv_path: ${{ inputs.csv_path }} 
+              is_delete: ${{ inputs.is_delete }}
+              inactive_only: ${{ inputs.inactive_only }}
+              inactive_days: ${{ inputs.inactive_days }}
+        
+          - name: Upload Copilot Usage Report for Inactive Users
+            uses: actions/upload-artifact@v4
+            with:
+              name: Copilot Usage Report
+              path: ${{ inputs.csv_path }}   
+     
+```
+This will shows all options in the workflow dispatch UI. You can select the options and trigger the workflow.
+
 
 Sample workflow 1: Copilot User Management to **Report** Inactive Users
 
@@ -130,6 +190,7 @@ Sample workflow 4: Revise Copilot User Management to **Eliminate** Inactive User
             name: Copilot Usage Report
             path: data/Copilot-Usage-Report.csv      
 ```
+
 
 ## Parameters
 
