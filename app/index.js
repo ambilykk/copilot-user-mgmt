@@ -49,6 +49,10 @@ const fields = [
     {
         label: 'Team',
         value: 'assigning_team.name'
+    },
+    {
+        label: 'Status',
+        value: 'status'
     }
 ];
 
@@ -103,31 +107,37 @@ async function run(org_Name, csv_path) {
                 else {
                     // return the inactive users and users not active for last n days
                     seatsData = seatsData.filter(seat => {
-                        return (!seat.last_activity_at || seat.last_activity_at.trim() === '') || new Date(seat.last_activity_at) < new Date(new Date().setDate(new Date().getDate() - inactive_days));
+                        const lastActivityDate = new Date(seat.last_activity_at);
+                        const currentDate = new Date();
+                        const diffInDays = Math.ceil((currentDate - lastActivityDate) / (1000 * 60 * 60 * 24));
+                        return (!seat.last_activity_at || seat.last_activity_at.trim() === '') || (diffInDays >= inactive_days);
                     });
                 }
 
                 // ALERT! - create our updated opts
                 const opts = { fields, "header": addTitleRow };
 
-                // append to the existing file (or create and append if needed)
-                require("fs").appendFileSync(csv_path, `${parse(seatsData, opts)}\n`);
-
-                /*
+                seatsData.forEach(seat => { seat.status = 'pending_cancellation';});
                 if(is_delete === 'true'){
                     // delete the user from copilot seat assignment
                     seatsData.forEach(seat => {
-                        console.log('Deleting User ' + seat.assignee.login);
-                        octokit.request('DELETE /orgs/{org}/copilot/billing/seats/{username}', {
+                        if(seat.assignee.login === 'amol1717'){
+                            console.log('@@@@@@@@@@@@@@@@@@@@ Skipping User ' + seat.assignee.login);
+                            seat.status = 'deleted';
+                        }
+                        
+                       /* octokit.request('DELETE /orgs/{org}/copilot/billing/seats/{username}', {
                             org: org_Name,
                             username: seat.assignee.login,
                             headers: {
                                 'X-GitHub-Api-Version': '2022-11-28'
                             }
-                        });
+                        });*/
                     });
                 }
-                */
+                 // append to the existing file (or create and append if needed)
+                 require("fs").appendFileSync(csv_path, `${parse(seatsData, opts)}\n`);
+                
                 if (remainingRecs > 0) {
                     pageNo = pageNo + 1;
                     addTitleRow = false;
