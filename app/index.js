@@ -96,7 +96,10 @@ async function run(org_Name, csv_path) {
                 // pagination to get next page data
                 remainingRecs = remainingRecs - seatsData.length;
                 console.log('Remaining Records ' + remainingRecs);
-
+                
+                console.log('inActive Only ' + inactive_only);
+                console.log('inActive Days ' + inactive_days);
+                console.log('is_delete ' + is_delete);
 
                 if (inactive_only || inactive_only === 'true') {
                     // return only the inactive user list
