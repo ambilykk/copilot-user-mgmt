@@ -124,7 +124,7 @@ async function run(org_Name, csv_path) {
                             console.log('@@@@@@@@@@@@@@@@@@@@ Skipping User ' + seat.assignee.login);
                             octokit.request('DELETE /orgs/{org}/copilot/billing/{username}', {
                                 org: org_Name,
-                                username: seat.assignee.login,
+                                username: [seat.assignee.login],
                                 headers: {
                                     'X-GitHub-Api-Version': '2022-11-28'
                                 }
