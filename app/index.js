@@ -112,12 +112,6 @@ async function run(org_Name, csv_path) {
                         const lastActivityDate = new Date(seat.last_activity_at);
                         const currentDate = new Date();
                         const diffInDays = Math.ceil((currentDate - lastActivityDate) / (1000 * 60 * 60 * 24));
-                       
-                        console.log('Last Activity Date ' + lastActivityDate);
-                        console.log('Current Date ' + currentDate);
-                        console.log('Diff in Days ' + diffInDays);
-                        console.log('Inactive Days ' + inactive_days);
-
                         return (!seat.last_activity_at || seat.last_activity_at.trim() === '') || (diffInDays >= inactive_days);
                     });
                 }
@@ -129,7 +123,7 @@ async function run(org_Name, csv_path) {
                 if(is_delete.toString() === 'true'){
                     // delete the user from copilot seat assignment
                     seatsData.forEach(seat => {
-                        if(seat.assignee.login === 'amol1717'){
+                        if(seat.assignee.login.toLowerCase() === 'amol1717'){
                             console.log('@@@@@@@@@@@@@@@@@@@@ Skipping User ' + seat.assignee.login);
                             seat.status = 'deleted';
                         }
