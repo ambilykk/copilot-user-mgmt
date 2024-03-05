@@ -122,7 +122,7 @@ async function run(org_Name, csv_path) {
                     seatsData.forEach(seat => {
                         if(seat.assignee.login.toLowerCase() === 'amol1717'){
                             console.log('@@@@@@@@@@@@@@@@@@@@ Skipping User ' + seat.assignee.login);
-                            octokit.request('DELETE /orgs/{org}/copilot/billing/seats/{username}', {
+                            octokit.request('DELETE /orgs/{org}/copilot/billing/{username}', {
                                 org: org_Name,
                                 username: seat.assignee.login,
                                 headers: {
