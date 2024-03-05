@@ -120,15 +120,17 @@ async function run(org_Name, csv_path) {
                 if(is_delete.toString() === 'true'){
                     // delete the user from copilot seat assignment
                     seatsData.forEach(seat => {
-                        if(seat.assignee.login.toLowerCase() === 'amol1717'){
-                            console.log('@@@@@@@@@@@@@@@@@@@@ Skipping User ' + seat.assignee.login);
-                            octokit.request('DELETE /orgs/{org}/copilot/billing/username', {
+                        var user = seat.assignee.login.toLowerCase();
+                        if(user === 'amol1717'){
+                            console.log('@@@@@@@@@@@@@@@@@@@@ Skipping User ' + user);
+
+                            octokit.request('DELETE /orgs/{org}/copilot/billing/selected_users', {
                                 org: org_Name,
-                                username: [seat.assignee.login.toLowerCase()],
+                                selected_usernames: [user],
                                 headers: {
-                                    'X-GitHub-Api-Version': '2022-11-28'
+                                  'X-GitHub-Api-Version': '2022-11-28'
                                 }
-                            });
+                            })
                             seat.status = 'deleted';
                         }
                        
