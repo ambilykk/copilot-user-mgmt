@@ -14,11 +14,13 @@
               is_delete:
                 description: 'Eliminate Inactive Users and Users inactive for the past n days'
                 required: false
-                default: 'false'
+                type: boolean
+                default: false
               inactive_only:
                 description: 'Remove only the inactive users from seat assignments'
                 required: false
-                default: 'false'
+                type: boolean
+                default:  false
               inactive_days:
                 description: 'Number of days to identify an inactive user. Default to 25 days.'
                 required: false

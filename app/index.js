@@ -98,7 +98,7 @@ async function run(org_Name, csv_path) {
                 console.log('Remaining Records ' + remainingRecs);
 
 
-                if (inactive_only === 'true') {
+                if (inactive_only || inactive_only === 'true') {
                     // return only the inactive user list
                     seatsData = seatsData.filter(seat => {
                         return !seat.last_activity_at || seat.last_activity_at.trim() === '';
@@ -118,7 +118,7 @@ async function run(org_Name, csv_path) {
                 const opts = { fields, "header": addTitleRow };
 
                 seatsData.forEach(seat => { seat.status = 'pending_cancellation';});
-                if(is_delete === 'true'){
+                if(is_delete || is_delete === 'true'){
                     // delete the user from copilot seat assignment
                     seatsData.forEach(seat => {
                         if(seat.assignee.login === 'amol1717'){
