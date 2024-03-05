@@ -97,9 +97,6 @@ async function run(org_Name, csv_path) {
                 remainingRecs = remainingRecs - seatsData.length;
                 console.log('Remaining Records ' + remainingRecs);
 
-                console.log('inActive Only ' + inactive_only);
-                console.log('is_delete ' + is_delete);
-
                 if (inactive_only.toString() === 'true'){
                     // return only the inactive user list
                     seatsData = seatsData.filter(seat => {
@@ -125,16 +122,16 @@ async function run(org_Name, csv_path) {
                     seatsData.forEach(seat => {
                         if(seat.assignee.login.toLowerCase() === 'amol1717'){
                             console.log('@@@@@@@@@@@@@@@@@@@@ Skipping User ' + seat.assignee.login);
+                            octokit.request('DELETE /orgs/{org}/copilot/billing/seats/{username}', {
+                                org: org_Name,
+                                username: seat.assignee.login,
+                                headers: {
+                                    'X-GitHub-Api-Version': '2022-11-28'
+                                }
+                            });
                             seat.status = 'deleted';
                         }
-                        
-                       /* octokit.request('DELETE /orgs/{org}/copilot/billing/seats/{username}', {
-                            org: org_Name,
-                            username: seat.assignee.login,
-                            headers: {
-                                'X-GitHub-Api-Version': '2022-11-28'
-                            }
-                        });*/
+                       
                     });
                 }
                  // append to the existing file (or create and append if needed)
