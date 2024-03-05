@@ -1,5 +1,5 @@
 name: 'Copilot User Management'
-description: 'Regularly optimize cost and seat usage for an organization by removing unused Copilot for Business seat assignments from the Organization.'
+description: 'Optimize organization costs and seat usage by periodically removing unused Copilot for Business seat assignments.'
 branding:
   icon: 'download'
   color: 'blue'
