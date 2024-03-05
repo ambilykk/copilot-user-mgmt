@@ -75,6 +75,8 @@ Sample workflow 0: Manual trigger to **Report** and **Eliminate** Users inactive
      
 ```
 This will shows all options in the workflow dispatch UI. You can select the options and trigger the workflow.
+![Screenshot 2024-03-05 at 12 37 22 PM](https://github.com/ambilykk/copilot-user-mgmt/assets/10282550/4b9f56c2-a1ea-4365-a544-9d9df12c01d9)
+
 
 
 Sample workflow 1: Copilot User Management to **Report** Inactive Users
@@ -198,10 +200,10 @@ Sample workflow 4: Revise Copilot User Management to **Eliminate** Inactive User
 |--------------------------------|------------|----------------------------------------------------------------------|
 | GITHUB_TOKEN                 | Yes | PAT Token for access    |
 | org_name                       | Yes | GitHub Organization Name                                      |
-| csv_path                       | Yes | CSV file path                                   |
-| inactive_only                | No  | Report only inactive users. Default is false. |
-| inactive_days               | No  | Report users inactive for the past n days. Default is 25. |
-| is_delete                      | No  | Delete the inactive users. Default is false. |
+| csv_path                       | Yes | CSV file path for the Copilot Seat report                          |
+| inactive_only                | No  | Report only inactive users. Default is false. If set as true, then only the inactive users who never used Copilot will be listed |
+| inactive_days               | No  | Report users inactive for the past n days. Default is 25. If inactive_only set to false, system reports all inactive users with last active date as blank and who are inactive for n days |
+| is_delete                      | No  | Delete the inactive users. Default is false. If it is false, only the report will be generated. If set as true, along with inactive user report, users will be removed form copilot seat assignment |
 
 ## Exported Fields
 Following fields are included in the Copilot Usage Report
@@ -212,6 +214,7 @@ Following fields are included in the Copilot Usage Report
 - Last Acivity Editor
 - Pending Cancellation Date
 - Team
+- Status - this field have the default value as 'pending_cancellation'. If the user is removed, this turned to 'deleted'
 
 ## Report
 Copilot usage report is added as a build artifact in the workflow. You can download the report from the workflow run page.
