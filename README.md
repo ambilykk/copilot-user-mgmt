@@ -17,9 +17,9 @@ Create a Fine-grained personal access tokens with
 Pass this token as an input to the action - GITHUB_TOKEN
 
 
-## Action in workflow
+## Usage in workflow
 
-Include the copilot-user-mgmt action in your workflow. 
+Incorporate the copilot-user-mgmt action into your workflow and initiate the workflow either manually or through a schedule. For a routine identification of inactive users and their removal from Copilot seat assignments, utilize the scheduled workflow. This workflow can be set to run on the 26th of each month, checking for users inactive for the last 25 days or those who have never used Copilot, and subsequently removing them. This approach allows sufficient time for seat assignment reversion if needed, and ensures the removal takes effect as part of the next billing cycle.
 
 Sample workflow 0: Manual trigger to **Report** and **Eliminate** Users inactive for last n days
 
@@ -215,6 +215,9 @@ Following fields are included in the Copilot Usage Report
 - Pending Cancellation Date
 - Team
 - Status - this field have the default value as 'pending_cancellation'. If the user is removed, this turned to 'deleted'
+
+## Potential for extension
+You can Fork and modify the Actions code to incorporate User management using Teams. Incorporate the [Remove teams from the Copilot subscription for an organization](https://docs.github.com/en/rest/copilot/copilot-user-management?apiVersion=2022-11-28#remove-teams-from-the-copilot-subscription-for-an-organization) API instead of [Remove users from the Copilot subscription for an organization](https://docs.github.com/en/rest/copilot/copilot-user-management?apiVersion=2022-11-28#remove-users-from-the-copilot-subscription-for-an-organization)
 
 ## Report
 Copilot usage report is added as a build artifact in the workflow. You can download the report from the workflow run page.
