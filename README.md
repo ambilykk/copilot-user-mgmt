@@ -95,16 +95,16 @@ Sample workflow 1: Copilot User Management to **Report** Inactive Users
         - name: Copilot User Management
             uses: ambilykk/copilot-user-mgmt@main
             with:        
-            GITHUB_TOKEN: ${{secrets.ORG_TOKEN}}
-            org_name: 'octodemo'
-            csv_path: data/Copilot-Usage-Report.csv
-            inactive_only: true
+              GITHUB_TOKEN: ${{secrets.ORG_TOKEN}}
+              org_name: 'octodemo'
+              csv_path: data/Copilot-Usage-Report.csv
+              inactive_only: true
         
         - name: Upload Copilot Usage Report for Inactive Users
             uses: actions/upload-artifact@v3
             with:
-            name: Copilot Usage Report
-            path: data/Copilot-Usage-Report.csv      
+              name: Copilot Usage Report
+              path: data/Copilot-Usage-Report.csv      
 ```
 
 Sample workflow 2: Copilot User Management to **Eliminate** Copilot Seat assignment for Inactive Users
@@ -123,17 +123,17 @@ Sample workflow 2: Copilot User Management to **Eliminate** Copilot Seat assignm
         - name: Copilot User Management
             uses: ambilykk/copilot-user-mgmt@main
             with:        
-            GITHUB_TOKEN: ${{secrets.ORG_TOKEN}}
-            org_name: 'octodemo'
-            csv_path: data/Copilot-Usage-Report.csv
-            inactive_only: true
-            is_delete: true
+              GITHUB_TOKEN: ${{secrets.ORG_TOKEN}}
+              org_name: 'octodemo'
+              csv_path: data/Copilot-Usage-Report.csv
+              inactive_only: true
+              is_delete: true
         
         - name: Upload Copilot Usage Report for Inactive Users
             uses: actions/upload-artifact@v3
             with:
-            name: Copilot Usage Report
-            path: data/Copilot-Usage-Report.csv      
+              name: Copilot Usage Report
+              path: data/Copilot-Usage-Report.csv      
 ```
 
 Sample workflow 3: Revise Copilot User Management to **Report** Inactive Users and Users inactive for the past 50 days.
@@ -152,16 +152,16 @@ Sample workflow 3: Revise Copilot User Management to **Report** Inactive Users a
         - name: Copilot User Management
             uses: ambilykk/copilot-user-mgmt@main
             with:        
-            GITHUB_TOKEN: ${{secrets.ORG_TOKEN}}
-            org_name: 'octodemo'
-            csv_path: data/Copilot-Usage-Report.csv
-            inactive_days: 50
+              GITHUB_TOKEN: ${{secrets.ORG_TOKEN}}
+              org_name: 'octodemo'
+              csv_path: data/Copilot-Usage-Report.csv
+              inactive_days: 50
         
         - name: Upload Copilot Usage Report for Inactive Users
             uses: actions/upload-artifact@v3
             with:
-            name: Copilot Usage Report
-            path: data/Copilot-Usage-Report.csv      
+              name: Copilot Usage Report
+              path: data/Copilot-Usage-Report.csv      
 ```
 
 Sample workflow 4: Revise Copilot User Management to **Eliminate** Copilot Seat assignment for Inactive Users and Users inactive for the past 50 days.
@@ -180,17 +180,17 @@ Sample workflow 4: Revise Copilot User Management to **Eliminate** Copilot Seat 
         - name: Copilot User Management
             uses: ambilykk/copilot-user-mgmt@main
             with:        
-            GITHUB_TOKEN: ${{secrets.ORG_TOKEN}}
-            org_name: 'octodemo'
-            csv_path: data/Copilot-Usage-Report.csv
-            inactive_days: 50
-            is_delete: true
+              GITHUB_TOKEN: ${{secrets.ORG_TOKEN}}
+              org_name: 'octodemo'
+              csv_path: data/Copilot-Usage-Report.csv
+              inactive_days: 50
+              is_delete: true
         
         - name: Upload Copilot Usage Report for Inactive Users
             uses: actions/upload-artifact@v3
             with:
-            name: Copilot Usage Report
-            path: data/Copilot-Usage-Report.csv      
+              name: Copilot Usage Report
+              path: data/Copilot-Usage-Report.csv      
 ```
 
 
@@ -201,8 +201,8 @@ Sample workflow 4: Revise Copilot User Management to **Eliminate** Copilot Seat 
 | GITHUB_TOKEN                 | Yes | PAT Token for access    |
 | org_name                       | Yes | GitHub Organization Name                                      |
 | csv_path                       | Yes | CSV file path for the Copilot Seat report                          |
-| inactive_only                | No  | Generate a report exclusively for inactive users. The default is set to false. When set to true, only the inactive users who have never used Copilot will be listed. |
-| inactive_days               | No  | Generate a report for users who have been inactive for the past n days, with the default value set to 25 days. If inactive_only is set to false, the system will report all users marked as inactive, including those with a blank last active date and those inactive for n days.|
+| inactive_only                | No  | Generate a report exclusively for inactive users who *Never used Copilot* or *No Activity* yet. The default is set to false. When set to true, only the inactive users who have never used Copilot will be listed. |
+| inactive_days               | No  | Generate a report for users who have been inactive for the past n days, with the default value set to 25 days.|
 | is_delete                      | No  | Remove Copilot Seat assignment for inactive users. The default setting is false. When set to false, only the report will be generated. If set to true, in addition to the inactive user report, users will be **Removed** from copilot seat assignments. |
 
 ## Exported Fields
