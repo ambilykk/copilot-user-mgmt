@@ -21,7 +21,7 @@ Pass this token as an input to the action - GITHUB_TOKEN
 
 Incorporate the copilot-user-mgmt action into your workflow and initiate the workflow either manually or through a schedule. For a routine identification of inactive users and their removal from Copilot seat assignments, utilize the scheduled workflow. This workflow can be set to run on the 26th of each month, checking for users inactive for the last 25 days or those who have never used Copilot, and subsequently removing them. This approach allows sufficient time for seat assignment reversion if needed, and ensures the removal takes effect as part of the next billing cycle.
 
-Sample workflow 0: Manual trigger to **Report** and **Eliminate** Users inactive for last n days
+Sample workflow 0: Manual trigger to **Report** and **Eliminate** Copilot Seat assignment for Users inactive for last n days
 
 ```
     name: Copilot User Management to Report Inactive Users
@@ -107,10 +107,10 @@ Sample workflow 1: Copilot User Management to **Report** Inactive Users
             path: data/Copilot-Usage-Report.csv      
 ```
 
-Sample workflow 2: Copilot User Management to **Eliminate** Inactive Users
+Sample workflow 2: Copilot User Management to **Eliminate** Copilot Seat assignment for Inactive Users
 
 ```
-    name: Copilot User Management to Eliminate Inactive Users
+    name: Copilot User Management to Eliminate Copilot Seat assignment for Inactive Users
 
     on:
       workflow_dispatch:
@@ -164,10 +164,10 @@ Sample workflow 3: Revise Copilot User Management to **Report** Inactive Users a
             path: data/Copilot-Usage-Report.csv      
 ```
 
-Sample workflow 4: Revise Copilot User Management to **Eliminate** Inactive Users and Users inactive for the past 50 days.
+Sample workflow 4: Revise Copilot User Management to **Eliminate** Copilot Seat assignment for Inactive Users and Users inactive for the past 50 days.
 
 ```
-    name: Copilot User Management to Eliminate Users inactive for last 50 days
+    name: Copilot User Management to Eliminate Copilot Seat assignment for Users inactive for last 50 days
 
     on:
       workflow_dispatch:
@@ -203,7 +203,7 @@ Sample workflow 4: Revise Copilot User Management to **Eliminate** Inactive User
 | csv_path                       | Yes | CSV file path for the Copilot Seat report                          |
 | inactive_only                | No  | Generate a report exclusively for inactive users. The default is set to false. When set to true, only the inactive users who have never used Copilot will be listed. |
 | inactive_days               | No  | Generate a report for users who have been inactive for the past n days, with the default value set to 25 days. If inactive_only is set to false, the system will report all users marked as inactive, including those with a blank last active date and those inactive for n days.|
-| is_delete                      | No  | Remove inactive users. The default setting is false. When set to false, only the report will be generated. If set to true, in addition to the inactive user report, users will be **Removed** from copilot seat assignments. |
+| is_delete                      | No  | Remove Copilot Seat assignment for inactive users. The default setting is false. When set to false, only the report will be generated. If set to true, in addition to the inactive user report, users will be **Removed** from copilot seat assignments. |
 
 ## Exported Fields
 Following fields are included in the Copilot Usage Report
