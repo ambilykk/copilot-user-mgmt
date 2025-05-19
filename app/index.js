@@ -59,7 +59,6 @@ const fields = [
 // Copilot User Management API call
 async function getUsage(org, pageNo) {
     try {
-
         return await octokit.request('GET /orgs/{org}/copilot/billing/seats', {
             org: org_Name,
             page: pageNo,
@@ -81,7 +80,7 @@ async function run(org_Name, csv_path) {
     let remainingRecs = 0;
 
     try {
-        await makeDir(dirname(csv_path));
+        await makeDir.makeDirectory(dirname(csv_path));
         do {
             // invoke the graphql query execution
             await getUsage(org_Name, pageNo).then(usageResult => {
@@ -120,15 +119,16 @@ async function run(org_Name, csv_path) {
                 if (is_delete.toString() === 'true') {
                     // delete the user from copilot seat assignment
                     var selected_users = seatsData.map(seat => seat.assignee.login.toLowerCase());
-                    
                     // delete all selected users from copilot seat assignment
-                    octokit.request('DELETE /orgs/{org}/copilot/billing/selected_users', {
-                        org: org_Name,
-                        selected_usernames: selected_users,
-                        headers: {
-                            'X-GitHub-Api-Version': '2022-11-28'
-                        }
-                    })
+                    if (selected_users.length > 0) {
+                        octokit.request('DELETE /orgs/{org}/copilot/billing/selected_users', {
+                            org: org_Name,
+                            selected_usernames: selected_users,
+                            headers: {
+                                'X-GitHub-Api-Version': '2022-11-28'
+                            }
+                        });
+                    }
 
                     // modify the status to deleted
                     seatsData.forEach(seat => {seat.status = 'deleted';});
